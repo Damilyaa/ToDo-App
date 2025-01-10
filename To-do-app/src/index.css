@@ -1,0 +1,9 @@
+body {
+  font-family: "Inter";
+  background-color: #fefefe;
+}
+
+.container {
+  width: 1170px;
+  margin: 0 auto;
+}
