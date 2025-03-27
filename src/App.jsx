@@ -10,6 +10,8 @@ import Auth from './components/Auth/Auth';
 
 import './App.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [activeTab, setActiveTab] = useState("To Do");
@@ -42,7 +44,7 @@ function App() {
         return; // Don't fetch if there's no token
       }
 
-      const response = await fetch('http://localhost:5001/api/todos', {
+      const response = await fetch(`${API_URL}/api/todos`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -63,7 +65,7 @@ function App() {
 
   const handleLogin = async (credentials) => {
     try {
-      const response = await fetch('http://localhost:5001/api/auth/login', {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +91,7 @@ function App() {
 
   const handleRegister = async (userData) => {
     try {
-      const response = await fetch('http://localhost:5001/api/auth/register', {
+      const response = await fetch(`${API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -116,7 +118,7 @@ function App() {
   const handleAddTask = async () => {
     if (formText.trim()) {
       try {
-        const response = await fetch('http://localhost:5001/api/todos', {
+        const response = await fetch(`${API_URL}/api/todos`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -143,7 +145,7 @@ function App() {
   const handleToggleTask = async (id) => {
     try {
       const task = tasks.find(t => t._id === id);
-      const response = await fetch(`http://localhost:5001/api/todos/${id}`, {
+      const response = await fetch(`${API_URL}/api/todos/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -168,7 +170,7 @@ function App() {
 
   const handleMoveToTrash = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/todos/${id}`, {
+      const response = await fetch(`${API_URL}/api/todos/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -193,7 +195,7 @@ function App() {
 
   const handleRestoreTask = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/todos/${id}`, {
+      const response = await fetch(`${API_URL}/api/todos/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -218,7 +220,7 @@ function App() {
 
   const handleDeleteForever = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5001/api/todos/${id}`, {
+      const response = await fetch(`${API_URL}/api/todos/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
