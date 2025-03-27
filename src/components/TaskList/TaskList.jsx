@@ -12,7 +12,7 @@ const TaskList = ({
     <ul className="task-list">
         {tasks.map((task) => (
             <TaskItem
-                key={task.id}
+                key={task._id}
                 task={task}
                 onMoveToTrash={onMoveToTrash}
                 onDeleteForever={onDeleteForever}

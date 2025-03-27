@@ -36,7 +36,7 @@ const TaskItem = ({
     return (
         <>
             <li className={`task-item ${task.completed ? "completed" : ""}`}>
-                <button onClick={() => toggleOptions(task.id)} className="btn-bs">
+                <button onClick={() => toggleOptions(task._id)} className="btn-bs">
                     <BsThreeDotsVertical />
                 </button>
 
@@ -44,7 +44,7 @@ const TaskItem = ({
                     <input
                         type="checkbox"
                         checked={task.completed}
-                        onChange={() => onToggleTask(task.id)}
+                        onChange={() => onToggleTask(task._id)}
                     />
                     <span className="checkmark">
                         {task.completed && <AiOutlineCheck className="check-icon" />}
@@ -52,24 +52,24 @@ const TaskItem = ({
                 </label>
 
                 <span className={task.completed ? 'completed-text' : ''}>
-                    {task.text}
+                    {task.title}
                 </span>
             </li>
 
-            {visibleTaskId === task.id && (
+            {visibleTaskId === task._id && (
                 <div className="options-menu">
                     {activeTab === 'Trash' ? (
                         <div className='trash-menu-wrapper'>
                             <button
                                 className="btn-delete-forever"
-                                onClick={() => onDeleteForever(task.id)}
+                                onClick={() => onDeleteForever(task._id)}
                             >
                                 <FaTrash />
                                 Delete Forever
                             </button>
                             <button
                                 className="btn-restore"
-                                onClick={() => onMoveBackToTodo(task.id)}
+                                onClick={() => onMoveBackToTodo(task._id)}
                             >
                                 <TbCopyCheckFilled />
                                 Move Back to Todo
@@ -78,14 +78,13 @@ const TaskItem = ({
                     ) : (
                         <button
                             className="btn-trash"
-                            onClick={() => onMoveToTrash(task.id)}
+                            onClick={() => onMoveToTrash(task._id)}
                         >
                             <FaTrash /> Move to Trash
                         </button>
                     )}
                 </div>
             )}
-
         </>
     );
 };
